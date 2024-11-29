@@ -15,9 +15,14 @@ jobs:
     - name: Prepare ZIP file
       run: |
         mkdir -p build/UnzerPayment
-        cp -r * build/UnzerPayment
-        cp -r .* build/UnzerPayment || true
-        rm -rf build/UnzerPayment/.git build/UnzerPayment/.github build/UnzerPayment/.githooks
+
+        rsync -av --progress ./ build/UnzerPayment \
+          --exclude build \
+          --exclude .git \
+          --exclude .github \
+          --exclude .githooks
+
+        # Navigate to the build directory
         cd build
         zip -r UnzerPayment.zip UnzerPayment
 

@@ -21,8 +21,6 @@ jobs:
           --exclude .git \
           --exclude .github \
           --exclude .githooks
-
-        # Navigate to the build directory
         cd build
         zip -r UnzerPayment.zip UnzerPayment
 
@@ -33,3 +31,5 @@ jobs:
         asset_path: build/UnzerPayment.zip
         asset_name: UnzerPayment.zip
         asset_content_type: application/zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
